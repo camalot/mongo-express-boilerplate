@@ -1,0 +1,30 @@
+{
+  "name": "mongo-express-boilerplate",
+  "version": "1.0.0-snapshot",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "start": "npm update && node ./bin/www",
+    "exec": "npm update && nodemon ./bin/www",
+    "lint": "jshint **/*.js --verbose && eslint .",
+    "cover": "$(npm bin)/istanbul cover --include-all-sources ./node_modules/mocha/bin/_mocha -- test/**/*.tests.js --recursive --reporter spec && codecov",
+    "test": "npm run lint && npm run cover"
+  },
+  "dependencies": {
+    "body-parser": "~1.18.3",
+    "cookie-parser": "~1.4.3",
+    "dotenv": "~6.1.0",
+    "express": "~4.16.4",
+    "express-session": "~1.15.6",
+    "fs-extra": "~7.0.1",
+    "hbs": "~4.0.1",
+    "merge": "^1.2.1",
+    "moment": "~2.22.2",
+    "moment-timezone": "~0.5.23",
+    "mongodb": "^3.1.10",
+    "morgan": "~1.9.1",
+    "promise": "~8.0.2"
+  },
+  "author": "",
+  "license": "ISC"
+}
