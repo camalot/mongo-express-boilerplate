@@ -8,6 +8,10 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser')
 const config = require('./config');
 const app = express();
+const http = require("http");
+
+const server = http.Server(app);
+const socket = require('./socket')(server);
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -19,6 +23,7 @@ app.use(cookieParser());
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
+app.use(require("./lib/middleware/socketio")(socket));
 require("./routes")(app);
 
 // 404 error handler
@@ -32,4 +37,4 @@ app.use(
 );
 
 
-module.exports = app;
+module.exports = { app: app, server: server, socket: socket };

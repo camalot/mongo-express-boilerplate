@@ -12,9 +12,7 @@ try {
 	// no env file
 }
 
-const app = require('../app/server');
 const debug = require('debug')('site');
-const http = require('http');
 let port;
 let server;
 
@@ -70,8 +68,13 @@ function onListening() {
  * Get this party started :)
  */
 port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
-server = http.createServer(app);
+
+const app = require('../app/server');
+app.app.set('port', port);
+server = app.server;
+
+
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+ 
